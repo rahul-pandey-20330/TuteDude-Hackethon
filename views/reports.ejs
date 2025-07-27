@@ -1,0 +1,29 @@
+<!-- views/reports.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reports - VendorBuddy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <h1 class="text-2xl font-bold text-green-700 mb-4">📊 Expense & Material Report</h1>
+
+  <p class="text-lg mb-2">👤 <strong>User:</strong> <%= user.name %></p>
+  <p class="text-lg mb-2">💰 <strong>Total Expenses:</strong> ₹<%= totalExpense %></p>
+  <p class="text-lg mb-4">📦 <strong>Total Material Cost:</strong> ₹<%= totalMaterialCost %></p>
+
+  <h2 class="text-xl font-semibold mt-6 mb-2">🗓️ This Month’s Expenses:</h2>
+  <% if (monthlyExpenses.length === 0) { %>
+    <p class="text-gray-600">No expenses added this month.</p>
+  <% } else { %>
+    <ul class="space-y-2">
+      <% monthlyExpenses.forEach(exp => { %>
+        <li class="bg-white p-4 shadow rounded">
+          <strong><%= exp.title %></strong> — ₹<%= exp.amount %> on <%= exp.date.toDateString() %>
+          <% if (exp.notes) { %><br/><small>📝 <%= exp.notes %></small><% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>
